@@ -1,7 +1,17 @@
 import React from 'react'
+import Slider from '../Component/Slider/Slider'
+import { Cards } from '../Component/Cards/Cards'
 
 export const Home = () => {
     return (
-        <div>hello this is home section</div>
+        <div>
+
+            <div className='my-6'>
+                <Slider></Slider>
+            </div>
+            <div className='my-6'>
+                <Cards></Cards>
+            </div>
+        </div>
     )
 }
