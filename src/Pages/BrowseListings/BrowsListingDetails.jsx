@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { AiFillLike } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { useLoaderData } from 'react-router'
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 export const BrowsListingDetails = () => {
     const allPostetData = useLoaderData();
@@ -20,6 +20,21 @@ export const BrowsListingDetails = () => {
             setIsLiked(true)
 
         }
+    }
+
+    const handleSendMessage = () => {
+        const textArea = document.getElementById("textArea").value;
+        if (textArea.length > 3) {
+
+            toast('Your massage send successfully');
+        } else {
+            toast.error('Your message have to me more than 3 letter')
+
+        }
+    }
+
+    const handleConfirmBtn = () => {
+        toast('Thanks for confirmation');
     }
 
     const {
@@ -112,7 +127,7 @@ export const BrowsListingDetails = () => {
                         <p className='text-lg'>{descriptions}</p>
                     </div>
                     <div className='my-4 w-full'>
-                        <button className="relative w-full px-5 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 rounded-lg shadow-inner group hover:cursor-pointer">
+                        <button onClick={handleConfirmBtn} className="relative w-full px-5 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 rounded-lg shadow-inner group hover:cursor-pointer">
                             <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
                             <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
                             <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
@@ -135,7 +150,7 @@ export const BrowsListingDetails = () => {
                             <fieldset className="fieldset">
                                 <textarea id='textArea' className="textarea h-24 resize-none w-full" placeholder={`Write message to ${name}`}></textarea>
                             </fieldset>
-                            <button className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-gray-900 rounded-lg hover:bg-gray-800 focus:shadow-outline focus:outline-none hover:cursor-pointer mt-6">
+                            <button onClick={handleSendMessage} className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-gray-900 rounded-lg hover:bg-gray-800 focus:shadow-outline focus:outline-none hover:cursor-pointer mt-6">
                                 Message
                             </button>
                         </div>
