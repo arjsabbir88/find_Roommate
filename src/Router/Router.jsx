@@ -6,6 +6,7 @@ import { FindRoommate } from "../Pages/FindRoommate/FindRoommate";
 import { BrowseListings } from "../Pages/BrowseListings/BrowseListings";
 import { MyListing } from "../Pages/My-Listing/MyListing";
 import { Details } from "../Pages/Details/Details";
+import { BrowsListingDetails } from "../Pages/BrowseListings/BrowsListingDetails";
 
 
 export const Router = createBrowserRouter([
@@ -25,7 +26,13 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/browse-listings',
-                Component: BrowseListings
+                Component: BrowseListings,
+                loader: () => fetch("http://localhost:3000/browse-listings")
+            },
+            {
+                path: '/browse-listings/details/:id',
+                Component: BrowsListingDetails,
+                loader: ({ params }) => fetch(`http://localhost:3000/browse-listings/details/${params.id}`)
             },
             {
                 path: '/my-listing',

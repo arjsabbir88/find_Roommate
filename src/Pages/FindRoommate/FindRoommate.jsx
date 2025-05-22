@@ -60,7 +60,7 @@ export const FindRoommate = () => {
                 </fieldset>
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
                     <label className="label">Rent Amount</label>
-                    <input type="text" className="input w-full" placeholder="Rent Amount" required />
+                    <input type="text" name='rent' className="input w-full" placeholder="Rent Amount" required />
                 </fieldset>
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
                     <label className="label">Room Type</label>

@@ -23,7 +23,7 @@ export const Card = ({ data }) => {
             <figure>
                 <img
                     src={image}
-                    alt="Shoes" />
+                    alt="image" />
             </figure>
             <div className="card-body">
                 <h2 className="card-title text-base">
