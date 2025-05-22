@@ -5,6 +5,7 @@ import { Home } from "../Pages/Home";
 import { FindRoommate } from "../Pages/FindRoommate/FindRoommate";
 import { BrowseListings } from "../Pages/BrowseListings/BrowseListings";
 import { MyListing } from "../Pages/My-Listing/MyListing";
+import { Details } from "../Pages/Details/Details";
 
 
 export const Router = createBrowserRouter([
@@ -15,7 +16,8 @@ export const Router = createBrowserRouter([
         children: [
             {
                 index: true,
-                Component: Home
+                Component: Home,
+                loader: () => fetch("http://localhost:3000/roommates-listing")
             },
             {
                 path: '/find-roommate',
@@ -28,6 +30,11 @@ export const Router = createBrowserRouter([
             {
                 path: '/my-listing',
                 Component: MyListing
+            },
+            {
+                path: '/details/:id',
+                Component: Details,
+                loader: ({ params }) => fetch(`http://localhost:3000/roommates-listing/${params.id}`)
             }
         ]
     }

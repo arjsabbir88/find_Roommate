@@ -21,17 +21,6 @@ export default function Slider() {
     };
     return (
         <>
-
-            {/* https://i.ibb.co/Tqpz5Jfx/pexels-cottonbro-6594301.jpg
-https://i.ibb.co/bjz7bfzm/pexels-shvets-production-9049686.jpg
-https://i.ibb.co/fzm3WbH4/pexels-ketut-subiyanto-4907608.jpg
-https://i.ibb.co/kVj1Qhsm/pexels-cottonbro-4781415.jpg
-https://i.ibb.co/GvV2pzTd/pexels-cottonbro-5158980.jpg
-
-https://i.ibb.co/gMmNZZKK/pexels-cottonbro-4783544.jpg
-https://i.ibb.co/7d908D10/pexels-cottonbro-4778662.jpg
-https://i.ibb.co/DH8QB3xm/pexels-cottonbro-4778621.jpg
-https://i.ibb.co/JjdRHYdh/pexels-rdne-5617834.jpg */}
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
