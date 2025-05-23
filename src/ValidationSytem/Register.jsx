@@ -1,20 +1,23 @@
 import React, { useContext, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 import { AuthContext } from '../Provider/AuthProvider'
 import { toast, ToastContainer } from 'react-toastify';
 import Swal from 'sweetalert2';
+import { Loading } from '../Component/Loading/Loading';
 
 export const Register = () => {
 
-    const { user, createUser, loginWithGoogle } = useContext(AuthContext);
+    const { user, createUser, loginWithGoogle, updateUser, setUser, loading } = useContext(AuthContext);
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
-        if (user) {
+        if (user && location.pathname === '/auth/register') {
+            toast('You are already LogedIn');
             navigate('/');
         }
-    }, [])
+    }, [user, location])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -33,6 +36,17 @@ export const Register = () => {
         createUser(email, password)
             .then((result) => {
                 const user = result.user;
+
+                updateUser({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        setUser({ ...user, displayName: name, photoURL: photo })
+                    })
+                    .catch((error) => {
+                        const errorMessage = error.message;
+                        toast.error(errorMessage)
+                        console.log('error form update user')
+                    });
+
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -41,7 +55,7 @@ export const Register = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/auth/login');
+                navigate('/');
             }).catch(error => {
                 Swal.fire({
                     icon: "error",
@@ -50,6 +64,7 @@ export const Register = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                console.log('error form create user form')
             })
     }
 
@@ -63,6 +78,12 @@ export const Register = () => {
                 toast.error('Sorry!! Something Was Worng!! Try again letter');
             })
 
+    }
+
+
+
+    if (loading) {
+        return <Loading />
     }
 
     return (

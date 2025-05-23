@@ -9,6 +9,7 @@ import { Details } from "../Pages/Details/Details";
 import { BrowsListingDetails } from "../Pages/BrowseListings/BrowsListingDetails";
 import { LogIn } from "../ValidationSytem/LogIn";
 import { Register } from "../ValidationSytem/Register";
+import { Loading } from "../Component/Loading/Loading";
 
 
 export const Router = createBrowserRouter([
@@ -20,7 +21,8 @@ export const Router = createBrowserRouter([
             {
                 index: true,
                 Component: Home,
-                loader: () => fetch("http://localhost:3000/roommates-listing")
+                loader: () => fetch("http://localhost:3000/roommates-listing"),
+                hydrateFallbackElement: <Loading />
             },
             {
                 path: '/find-roommate',
@@ -29,12 +31,14 @@ export const Router = createBrowserRouter([
             {
                 path: '/browse-listings',
                 Component: BrowseListings,
-                loader: () => fetch("http://localhost:3000/browse-listings")
+                loader: () => fetch("http://localhost:3000/browse-listings"),
+                hydrateFallbackElement: <Loading />
             },
             {
                 path: '/browse-listings/details/:id',
                 Component: BrowsListingDetails,
-                loader: ({ params }) => fetch(`http://localhost:3000/browse-listings/details/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/browse-listings/details/${params.id}`),
+                hydrateFallbackElement: <Loading />
             },
             {
                 path: '/my-listing',
@@ -43,7 +47,8 @@ export const Router = createBrowserRouter([
             {
                 path: '/details/:id',
                 Component: Details,
-                loader: ({ params }) => fetch(`http://localhost:3000/roommates-listing/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/roommates-listing/${params.id}`),
+                hydrateFallbackElement: <Loading />
             },
             {
                 path: '/auth/login',
@@ -52,6 +57,12 @@ export const Router = createBrowserRouter([
             {
                 path: '/auth/register',
                 Component: Register
+
+                // Component: Register
+            },
+            {
+                path: '/*',
+                element: <Error></Error>
             }
         ]
     }

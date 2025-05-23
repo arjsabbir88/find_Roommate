@@ -11,35 +11,42 @@ const provider = new GoogleAuthProvider();
 export const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true)
 
 
     // logIn user by the login page
     const signIn = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password);
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password).finally(() => setLoading(false));
     }
 
     // create user by the registation page
 
     const createUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
+        setLoading(true)
+        return createUserWithEmailAndPassword(auth, email, password).finally(() => setLoading(false));
     }
 
 
     const updateUser = (updateData) => {
-        return updateProfile(auth.currentUser, updateData)
+        setLoading(true);
+        return updateProfile(auth.currentUser, updateData).finally(() => setLoading(false));
     }
 
     const loginWithGoogle = () => {
-        return signInWithPopup(auth, provider)
+        setLoading(true);
+        return signInWithPopup(auth, provider).finally(() => setLoading(false))
     }
 
     const logOut = () => {
-        return signOut(auth);
+        setLoading(true);
+        return signOut(auth).finally(() => setLoading(false));
     }
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            setLoading(false)
         })
 
         return () => {
@@ -54,7 +61,8 @@ export const AuthProvider = ({ children }) => {
         setUser,
         updateUser,
         loginWithGoogle,
-        logOut
+        logOut,
+        loading
     }
 
     return <AuthContext value={authData}>{children}</AuthContext>

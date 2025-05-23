@@ -1,13 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Slider from '../Component/Slider/Slider'
 import { Card } from '../Component/Card/Card'
-import { useLoaderData } from 'react-router'
+import { useLoaderData, useLocation, useNavigate } from 'react-router'
 import { AuthContext } from '../Provider/AuthProvider'
+import { Loading } from '../Component/Loading/Loading'
 
 export const Home = () => {
-    const { user } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     console.log(user)
     const dataFormServer = useLoaderData();
+
+
+    if (loading) {
+        return <Loading />
+    }
+
     return (
         <div>
 

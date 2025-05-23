@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Provider/AuthProvider';
+import { useNavigate } from 'react-router';
 
 export const FindRoommate = () => {
+    const navigate = useNavigate()
+
+    const { user } = useContext(AuthContext)
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/auth/login');
+        }
+    }, [])
 
     const handleAddToFindRoommate = (e) => {
         e.preventDefault();

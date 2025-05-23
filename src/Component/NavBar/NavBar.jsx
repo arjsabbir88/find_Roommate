@@ -1,23 +1,27 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router'
 import { AuthContext } from '../../Provider/AuthProvider'
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import { Loading } from '../Loading/Loading';
 
 export const NavBar = () => {
 
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, loading } = useContext(AuthContext);
 
 
     const handleLogOut = () => {
+        console.log('clicked');
         logOut()
             .then(() => {
                 toast.success('Account LogOUt Successfylly');
+                console.log('logout successfylly')
             }).catch((error) => {
                 toast.error('Something was worng try again letter');
             })
     }
 
     const links = <>
+        <ToastContainer />
         <ul className='md:flex gap-5'>
             <li>
                 <Link to='/' className='btn'>Home</Link>
@@ -33,6 +37,11 @@ export const NavBar = () => {
             </li>
         </ul>
     </>
+
+
+    if (loading) {
+        return <Loading />
+    }
 
     return (
         <div className="navbar bg-base-100 shadow-sm mt-4">
@@ -58,7 +67,15 @@ export const NavBar = () => {
             </div>
             <div className="navbar-end gap-3">
 
-
+                {
+                    user ? (
+                        <div className="avatar avatar-online mx-3">
+                            <div className="w-10 rounded-full hover:cursor-pointer">
+                                <img src={`${user.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/128/1177/1177568.png"}`} title={user.displayName} />
+                            </div>
+                        </div>
+                    ) : ('')
+                }
                 {
                     user ? (<Link to='/auth/login' className="btn hidden">LogIn</Link>) : (<Link to='/auth/login' className="btn">LogIn</Link>)
                 }

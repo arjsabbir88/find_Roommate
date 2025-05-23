@@ -1,21 +1,25 @@
 import React, { useContext, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 import { AuthContext } from '../Provider/AuthProvider'
 import Swal from 'sweetalert2'
 import { toast } from 'react-toastify'
+import { Loading } from '../Component/Loading/Loading'
 
 
 export const LogIn = () => {
 
-    const { user, signIn, loginWithGoogle } = useContext(AuthContext)
+    const { user, signIn, loginWithGoogle, loading } = useContext(AuthContext)
 
     const navigate = useNavigate();
+    const location = useLocation()
 
     useEffect(() => {
-        if (user) {
-            navigate('/');
+        if (user && location.pathname === '/auth/login') {
+            toast('You are already LogedIn')
+            navigate('/')
         }
-    }, [])
+    }, [user, location])
+
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -74,7 +78,9 @@ export const LogIn = () => {
                 toast.error('Something was worng. Try Again');
             })
     }
-
+    if (loading) {
+        return <Loading />
+    }
     return (
         <div className='flex items-center flex-col md:flex-row my-10'>
             <div className='max-w-xl md:max-w-xl lg:max-w-2xl'

@@ -17,6 +17,8 @@ export const Rows = ({ data }) => {
         name,
         image
     } = data;
+
+
     return (
         <tr>
             <td>
@@ -43,7 +45,8 @@ export const Rows = ({ data }) => {
             <td>{availability}</td>
             <td>{roomType}</td>
             <th>
-                <Link to={`details/${_id}`} className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">
+                <Link to={`details/${_id}`} className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition 
+                duration-300 ease-in-out hover:text-white px-4 py-2 text-sm whitespace-nowrap">
                     See More</Link>
             </th>
         </tr>

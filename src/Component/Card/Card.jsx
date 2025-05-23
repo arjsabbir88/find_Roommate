@@ -19,7 +19,7 @@ export const Card = ({ data }) => {
     } = data;
 
     return (
-        <div className="card bg-base-100 w-96 shadow-xl/30 transform transition hover:-translate-y-3 motion-reduce:transition-none motion-reduce:hover:transform-none">
+        <div className="card bg-base-100 shadow-xl/30 transform transition hover:-translate-y-3 motion-reduce:transition-none motion-reduce:hover:transform-none">
             <figure>
                 <img
                     src={image}
