@@ -6,8 +6,7 @@ import { AuthContext } from '../Provider/AuthProvider'
 import { Loading } from '../Component/Loading/Loading'
 
 export const Home = () => {
-    const { user, loading } = useContext(AuthContext);
-    console.log(user)
+    const { loading } = useContext(AuthContext);
     const dataFormServer = useLoaderData();
 
 

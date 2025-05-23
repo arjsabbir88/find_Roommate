@@ -10,6 +10,8 @@ import { BrowsListingDetails } from "../Pages/BrowseListings/BrowsListingDetails
 import { LogIn } from "../ValidationSytem/LogIn";
 import { Register } from "../ValidationSytem/Register";
 import { Loading } from "../Component/Loading/Loading";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { UpdateListingData } from "../Pages/My-Listing/UpdateListingData";
 
 
 export const Router = createBrowserRouter([
@@ -26,7 +28,12 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/find-roommate',
-                Component: FindRoommate
+                element: (
+                    <ProtectedRoute>
+                        <FindRoommate></FindRoommate>
+                    </ProtectedRoute>
+                )
+                // Component: FindRoommate
             },
             {
                 path: '/browse-listings',
@@ -42,7 +49,8 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/my-listing',
-                Component: MyListing
+                Component: MyListing,
+                // loader:
             },
             {
                 path: '/details/:id',
@@ -63,6 +71,12 @@ export const Router = createBrowserRouter([
             {
                 path: '/*',
                 element: <Error></Error>
+            },
+            {
+                path: '/my-listing/update-Listing-data/:id',
+                Component: UpdateListingData,
+                loader: ({ params }) => fetch(`http://localhost:3000/my-listing/${params.id}`),
+                hydrateFallbackElement: <Loading />
             }
         ]
     }

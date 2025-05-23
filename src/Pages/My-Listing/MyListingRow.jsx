@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router';
 
-export const Rows = ({ data }) => {
-    // console.log(data)
+export const MyListingRow = ({ listing }) => {
 
     const {
         _id,
@@ -13,9 +12,7 @@ export const Rows = ({ data }) => {
         availability,
         name,
         image
-    } = data;
-
-
+    } = listing;
     return (
         <tr>
             <td>
@@ -42,9 +39,14 @@ export const Rows = ({ data }) => {
             <td>{availability}</td>
             <td>{roomType}</td>
             <th>
-                <Link to={`details/${_id}`} className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition 
+                <Link to={`/my-listing/update-Listing-data/${_id}`} className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition 
                 duration-300 ease-in-out hover:text-white px-4 py-2 text-sm whitespace-nowrap">
-                    See More</Link>
+                    Update</Link>
+            </th>
+            <th>
+                <button className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition 
+                duration-300 ease-in-out hover:text-white px-4 py-2 text-sm whitespace-nowrap">
+                    Delete</button>
             </th>
         </tr>
     )

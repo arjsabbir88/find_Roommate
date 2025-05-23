@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { AuthContext } from '../Provider/AuthProvider'
 import Swal from 'sweetalert2'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import { Loading } from '../Component/Loading/Loading'
 
 
@@ -48,9 +48,6 @@ export const LogIn = () => {
                 navigate("/")
             })
             .catch((error) => {
-                // const errorCode = error.code;
-                // const errorMessage = error.message;
-                // setError(errorMessage);
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -83,6 +80,7 @@ export const LogIn = () => {
     }
     return (
         <div className='flex items-center flex-col md:flex-row my-10'>
+            <ToastContainer></ToastContainer>
             <div className='max-w-xl md:max-w-xl lg:max-w-2xl'
 
                 style={{

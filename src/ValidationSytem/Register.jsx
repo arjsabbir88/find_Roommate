@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { AuthContext } from '../Provider/AuthProvider'
 import { toast, ToastContainer } from 'react-toastify';
@@ -11,6 +11,7 @@ export const Register = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const [error, setError] = useState('');
 
     useEffect(() => {
         if (user && location.pathname === '/auth/register') {
@@ -31,7 +32,25 @@ export const Register = () => {
 
         console.log(name, email, photo, password)
 
+        const errors = [];
 
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+
+        if (password < 6) {
+            errors.push("Pass is too short");
+        }
+
+        if (!hasUppercase) {
+            errors.push("Please Added at least one upper case");
+        }
+        if (!hasLowercase) {
+            errors.push("Please Added at least one lower case");
+        }
+        if (errors.length > 0) {
+            console.log('Invalid Password. Please check requirements.');
+            return
+        }
 
         createUser(email, password)
             .then((result) => {
