@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Slider from '../Component/Slider/Slider'
 import { Card } from '../Component/Card/Card'
 import { useLoaderData } from 'react-router'
+import { AuthContext } from '../Provider/AuthProvider'
 
 export const Home = () => {
-
+    const { user } = useContext(AuthContext);
+    console.log(user)
     const dataFormServer = useLoaderData();
     return (
         <div>

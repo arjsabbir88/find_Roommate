@@ -43,7 +43,8 @@ export const Rows = ({ data }) => {
             <td>{availability}</td>
             <td>{roomType}</td>
             <th>
-                <Link to={`details/${_id}`} className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">Details</Link>
+                <Link to={`details/${_id}`} className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">
+                    See More</Link>
             </th>
         </tr>
     )

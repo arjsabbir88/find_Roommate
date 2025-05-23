@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router'
+import { AuthContext } from '../../Provider/AuthProvider'
+import { toast } from 'react-toastify';
 
 export const NavBar = () => {
+
+    const { user, logOut } = useContext(AuthContext);
+
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                toast.success('Account LogOUt Successfylly');
+            }).catch((error) => {
+                toast.error('Something was worng try again letter');
+            })
+    }
 
     const links = <>
         <ul className='md:flex gap-5'>
@@ -43,8 +57,14 @@ export const NavBar = () => {
                 }
             </div>
             <div className="navbar-end gap-3">
-                <Link className="btn">Login</Link>
-                <Link className="btn">Signup</Link>
+
+
+                {
+                    user ? (<Link to='/auth/login' className="btn hidden">LogIn</Link>) : (<Link to='/auth/login' className="btn">LogIn</Link>)
+                }
+                {
+                    user ? (<button onClick={handleLogOut} className="btn">LogOut</button>) : (<Link to='/auth/register' className="btn">Regiester</Link>)
+                }
             </div>
         </div>
     )

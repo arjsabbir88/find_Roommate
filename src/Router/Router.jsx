@@ -7,6 +7,8 @@ import { BrowseListings } from "../Pages/BrowseListings/BrowseListings";
 import { MyListing } from "../Pages/My-Listing/MyListing";
 import { Details } from "../Pages/Details/Details";
 import { BrowsListingDetails } from "../Pages/BrowseListings/BrowsListingDetails";
+import { LogIn } from "../ValidationSytem/LogIn";
+import { Register } from "../ValidationSytem/Register";
 
 
 export const Router = createBrowserRouter([
@@ -42,6 +44,14 @@ export const Router = createBrowserRouter([
                 path: '/details/:id',
                 Component: Details,
                 loader: ({ params }) => fetch(`http://localhost:3000/roommates-listing/${params.id}`)
+            },
+            {
+                path: '/auth/login',
+                Component: LogIn
+            },
+            {
+                path: '/auth/register',
+                Component: Register
             }
         ]
     }

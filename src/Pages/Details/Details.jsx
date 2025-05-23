@@ -73,7 +73,7 @@ export const Details = () => {
                 </div>
             </div>
 
-            <div className='my-6 rounded-2xl max-w-7xl mx-auto'>
+            <div className='my-6 rounded-2xl max-w-7xl mx-auto bg-base-200 p-4'>
                 <div>
                     <h1 className='text-2xl font-bold text-center my-6'>See Your Home Details</h1>
                 </div>
@@ -92,7 +92,7 @@ export const Details = () => {
                 <h1 className='text-center text-2xl font-bold text-[#F2C94C] my-5'>{title}</h1>
             </div>
             <div className='max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 my-6'>
-                <div className="card-body card card-dash bg-base-200">
+                <div className="card-body card card-dash bg-base-200 shadow-xl/30">
                     <div className='flex justify-between bg-green-200 p-6 rounded-2xl'>
                         <div className='text-center'>
                             <p className='text-base md:text-lg text-[#969696] mb-[-4px]'>Price/Month</p>
@@ -139,7 +139,7 @@ export const Details = () => {
                     </div>
                 </div>
                 <div>
-                    <div className='bg-base-200 rounded-xl p-4 w-full max-w-md min-h-[300px] max-h-[350px] mx-auto lg:mx-0'>
+                    <div className='bg-base-200 rounded-xl p-4 w-full max-w-md min-h-[300px] max-h-[350px] mx-auto lg:mx-0 shadow-xl/30'>
                         <div className='flex items-center mt-4'>
                             <CgProfile size={40} />
                             <div>
@@ -157,7 +157,8 @@ export const Details = () => {
                         </div>
 
                     </div>
-                    <div className='flex justify-center items-center bg-base-200 rounded-xl p-4 my-6 w-full max-w-md mx-auto lg:mx-0'>
+                    <div className='flex justify-center items-center bg-base-200 rounded-xl p-4 my-6 w-full max-w-md mx-auto 
+                    lg:mx-0 shadow-xl/30 transform transition hover:-translate-y-3 motion-reduce:transition-none motion-reduce:hover:transform-none'>
                         <AiFillLike onClick={handleLike} size={40} className='hover:cursor-pointer' />
                         <span className='ml-3 text-2xl font-semibold'>{like}</span>
                         <ToastContainer />
