@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AiFillLike } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { useLoaderData } from 'react-router'
 import { toast, ToastContainer } from 'react-toastify';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 export const Details = () => {
     const dataForDetails = useLoaderData();
+    const { user } = useContext(AuthContext)
 
     const {
         _id,
@@ -19,22 +21,25 @@ export const Details = () => {
         email,
         name,
         image,
-        rent
+        rent,
+        likeCount
     } = dataForDetails;
+    console.log(likeCount)
 
-    const [like, setLike] = useState(0);
+    const [like, setLike] = useState(likeCount);
     const [isLiked, setIsLiked] = useState(false);
+    const [showContract, setShowcontract] = useState(false);
 
-    const handleLike = () => {
-        if (isLiked) {
-            setLike(like - 1);
-            setIsLiked(false);
-        } else {
-            setLike(like + 1);
-            setIsLiked(true)
+    // const handleLike = () => {
+    //     if (isLiked) {
+    //         setLike(like - 1);
+    //         setIsLiked(false);
+    //     } else {
+    //         setLike(like + 1);
+    //         setIsLiked(true)
 
-        }
-    }
+    //     }
+    // }
 
     const handleSendMessage = () => {
         const textArea = document.getElementById("textArea").value;
@@ -50,6 +55,24 @@ export const Details = () => {
     const handleConfirmBtn = () => {
         toast('Thanks for confirmation');
     }
+
+    const handleLike = async () => {
+        if (email === user.email) {
+            toast.error("You can't like your own post!");
+            return;
+        }
+
+        const res = await fetch(`http://localhost:3000/details/${_id}/like`, {
+            method: "PATCH",
+        });
+
+        if (res.ok) {
+            setLike(prev => prev + 1);
+            setShowcontract(true)
+            // toast.success("You liked this!");
+        }
+
+    };
 
     return (
         <>
@@ -120,7 +143,10 @@ export const Details = () => {
                         </div>
                         <div className='text-center'>
                             <p className='text-base md:text-lg text-[#969696] mb-[-4px]'>Contact</p>
-                            <h2 className="card-title font-semibold text-lg md:text-xl">{contact}</h2>
+                            {
+                                showContract ? (<h2 id='contact' className="card-title font-semibold text-lg md:text-xl">{contact}</h2>) :
+                                    (<h2 id='contactTitle' className="card-title font-semibold text-lg">Like page to see contact</h2>)
+                            }
                         </div>
                     </div>
 

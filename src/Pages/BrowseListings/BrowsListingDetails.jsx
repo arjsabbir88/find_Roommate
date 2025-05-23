@@ -1,26 +1,63 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AiFillLike } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { useLoaderData } from 'react-router'
 import { toast, ToastContainer } from 'react-toastify';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 export const BrowsListingDetails = () => {
     const allPostetData = useLoaderData();
-    console.log(allPostetData)
+    const { user } = useContext(AuthContext);
 
-    const [like, setLike] = useState(0);
     const [isLiked, setIsLiked] = useState(false);
 
-    const handleLike = () => {
-        if (isLiked) {
-            setLike(like - 1);
-            setIsLiked(false);
-        } else {
-            setLike(like + 1);
-            setIsLiked(true)
 
+    const [showContract, setShowcontract] = useState(false);
+
+    const {
+        _id,
+        title,
+        location,
+        roomType,
+        lifeStyle,
+        descriptions,
+        contact,
+        availability,
+        email,
+        name,
+        image,
+        rent,
+        likeCount
+    } = allPostetData;
+    const [like, setLike] = useState(likeCount);
+
+    const handleLike = async () => {
+
+        if (email === user.email) {
+            toast.error("You can't like your own post!");
+            return;
         }
-    }
+
+        const res = await fetch(`http://localhost:3000/browse-listings/details/${_id}/like`, {
+            method: "PATCH",
+        });
+
+        if (res.ok) {
+            setLike(prev => prev + 1);
+            setShowcontract(true)
+            // toast.success("You liked this!");
+            // if (isLiked) {
+            //     setLike(like - 1);
+            //     setIsLiked(false);
+            // } else {
+            //     setLike(like + 1);
+            //     setIsLiked(true)
+
+            // }
+        }
+
+    };
+
 
     const handleSendMessage = () => {
         const textArea = document.getElementById("textArea").value;
@@ -37,19 +74,7 @@ export const BrowsListingDetails = () => {
         toast('Thanks for confirmation');
     }
 
-    const {
-        title,
-        location,
-        roomType,
-        lifeStyle,
-        descriptions,
-        contact,
-        availability,
-        email,
-        name,
-        image,
-        rent
-    } = allPostetData;
+
     return (
         <>
             <div
@@ -73,8 +98,9 @@ export const BrowsListingDetails = () => {
             </div>
 
             <div className='my-6 rounded-2xl max-w-7xl mx-auto'>
-                <div>
-                    <h1 className='text-2xl font-bold text-center my-6'>See Your Home Details</h1>
+                <div className='my-6'>
+                    <h1 className='text-2xl font-bold text-center'>See Your Home Details</h1>
+                    <p className='text-lg font-bold text-center text-green-400'>{like} people interested in.</p>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                     <img className='rounded-2xl' src={image} alt="" />
@@ -119,7 +145,12 @@ export const BrowsListingDetails = () => {
                         </div>
                         <div className='text-center'>
                             <p className='text-base md:text-lg text-[#969696] mb-[-4px]'>Contact</p>
-                            <h2 className="card-title font-semibold text-lg md:text-xl">{contact}</h2>
+                            {
+                                showContract ? (<h2 id='contact' className="card-title font-semibold text-lg md:text-xl">{contact}</h2>) :
+                                    (<h2 id='contactTitle' className="card-title font-semibold text-lg">Like page to see contact</h2>)
+                            }
+
+
                         </div>
                     </div>
 
