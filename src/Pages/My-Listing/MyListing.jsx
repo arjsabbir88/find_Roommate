@@ -13,7 +13,7 @@ export const MyListing = () => {
     useEffect(() => {
         if (!user?.email) return;
         // collecting data form the api via email
-        fetch(`http://localhost:3000/my-listing?email=${user.email}`)
+        fetch(`https://server-side-fawn.vercel.app/my-listing?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setMyListing(data);

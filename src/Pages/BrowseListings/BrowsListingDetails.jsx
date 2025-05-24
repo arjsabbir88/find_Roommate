@@ -38,7 +38,7 @@ export const BrowsListingDetails = () => {
             return;
         }
 
-        const res = await fetch(`http://localhost:3000/browse-listings/details/${_id}/like`, {
+        const res = await fetch(`https://server-side-fawn.vercel.app/browse-listings/details/${_id}/like`, {
             method: "PATCH",
         });
 

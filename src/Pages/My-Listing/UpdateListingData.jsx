@@ -36,7 +36,7 @@ export const UpdateListingData = () => {
 
 
         // request for updated data
-        fetch(`http://localhost:3000/my-listing/${_id}`, {
+        fetch(`https://server-side-fawn.vercel.app/my-listing/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

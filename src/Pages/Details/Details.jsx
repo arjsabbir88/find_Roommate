@@ -62,7 +62,7 @@ export const Details = () => {
             return;
         }
 
-        const res = await fetch(`http://localhost:3000/details/${_id}/like`, {
+        const res = await fetch(`https://server-side-fawn.vercel.app/details/${_id}/like`, {
             method: "PATCH",
         });
 

@@ -28,7 +28,7 @@ export const FindRoommate = () => {
 
         // send data to db
 
-        fetch("http://localhost:3000/roommates-listing", {
+        fetch("https://server-side-fawn.vercel.app/roommates-listing", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
