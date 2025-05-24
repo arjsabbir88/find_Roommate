@@ -39,7 +39,38 @@ export const NavBar = () => {
             <li>
                 <Link to='/my-listing' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>My Listings</Link>
             </li>
+            <li>
+                {
+                    user ? (<Link to='/auth/login' className="btn hidden bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogIn</Link>) : (<Link to='/auth/login' className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogIn</Link>)
+                }
+                {
+                    user ? (<button onClick={handleLogOut} className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogOut</button>) : (<Link to='/auth/register' className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">Regiester</Link>)
+                }
+            </li>
+
         </ul>
+    </>
+
+    const divs = <>
+        <ThemeToggle></ThemeToggle>
+
+        {
+            user ? (
+                <div className="avatar avatar-online mx-3 example-container">
+                    <div className="w-10 rounded-full hover:cursor-pointer" data-tooltip-id="my-tooltip-styles" data-tooltip-content={user.displayName}>
+                        <img src={`${user.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/128/1177/1177568.png"}`} title={user.displayName} />
+                    </div>
+                    <Tooltip id="my-tooltip-styles" className="example" />
+                </div>
+            ) : ('')
+        }
+        {
+            user ? (<Link to='/auth/login' className="btn hidden bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogIn</Link>) : (<Link to='/auth/login' className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogIn</Link>)
+        }
+        {
+            user ? (<button onClick={handleLogOut} className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogOut</button>) : (<Link to='/auth/register' className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">Regiester</Link>)
+        }
+
     </>
 
 
@@ -62,32 +93,29 @@ export const NavBar = () => {
                         }
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <Link to='/' className="btn btn-ghost font-bold text-xl">Room<span className='text-red-500'>Sync</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 {
                     links
                 }
             </div>
-            <div className="navbar-end gap-3">
-
+            <div className="hidden md:flex navbar-end gap-3">
+                {
+                    divs
+                }
+            </div>
+            <div className='navbar-end md:hidden'>
                 <ThemeToggle></ThemeToggle>
-
                 {
                     user ? (
                         <div className="avatar avatar-online mx-3 example-container">
                             <div className="w-10 rounded-full hover:cursor-pointer" data-tooltip-id="my-tooltip-styles" data-tooltip-content={user.displayName}>
-                                <img src={`${user.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/128/1177/1177568.png"}`} title={user.displayName} />
+                                <img src={`${user.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/128/1177/1177568.png"}`} />
                             </div>
                             <Tooltip id="my-tooltip-styles" className="example" />
                         </div>
                     ) : ('')
-                }
-                {
-                    user ? (<Link to='/auth/login' className="btn hidden bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogIn</Link>) : (<Link to='/auth/login' className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogIn</Link>)
-                }
-                {
-                    user ? (<button onClick={handleLogOut} className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogOut</button>) : (<Link to='/auth/register' className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">Regiester</Link>)
                 }
             </div>
         </div>
