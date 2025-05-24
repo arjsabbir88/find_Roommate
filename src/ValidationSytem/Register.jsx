@@ -32,7 +32,7 @@ export const Register = () => {
 
         const { name, email, photo, password } = convertData;
 
-        console.log(name, email, photo, password)
+        // console.log(name, email, photo, password)
 
         const errors = [];
 
@@ -50,7 +50,7 @@ export const Register = () => {
             errors.push("Please Added at least one lower case");
         }
         if (errors.length > 0) {
-            console.log('Invalid Password. Please check requirements.');
+            toast.error('Invalid Password. Please check requirements.');
             return
         }
 
@@ -78,16 +78,17 @@ export const Register = () => {
                 });
                 navigate('/');
             }).catch(error => {
-                toast.error(error.message)
-
-                // Swal.fire({
-                //     position: "center",
-                //     icon: "success",
-                //     text: 'Create Your Account Successfully',
-                //     title: "Welcome to RoomSync",
-                //     showConfirmButton: false,
-                //     timer: 1500
-                // });
+                console.error('Create User Error:', error); // check error.message
+                // toast.error(error.message);
+                const message = error.message
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    text: { message },
+                    title: "Something was wrong. Try Again letter",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 console.log('error form create user form')
             })
     }
