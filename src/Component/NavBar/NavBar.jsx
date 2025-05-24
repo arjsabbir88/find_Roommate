@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { Loading } from '../Loading/Loading';
 import { Tooltip } from 'react-tooltip';
 import './style.css'
+import { ThemeToggle } from '../../Theme/Theme';
 
 
 export const NavBar = () => {
@@ -69,6 +70,8 @@ export const NavBar = () => {
                 }
             </div>
             <div className="navbar-end gap-3">
+
+                <ThemeToggle></ThemeToggle>
 
                 {
                     user ? (
