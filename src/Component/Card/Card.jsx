@@ -21,7 +21,7 @@ export const Card = ({ data }) => {
 
     return (
         <Slide triggerOnce>
-            <div className="card bg-base-100 shadow-xl/30 transform transition hover:-translate-y-3 motion-reduce:transition-none motion-reduce:hover:transform-none">
+            <div className="card bg-base-100 shadow-xl/30 transform transition hover:-translate-y-3 motion-reduce:transition-none motion-reduce:hover:transform-none h-full">
                 <figure>
                     <img
                         src={image}

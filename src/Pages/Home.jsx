@@ -5,6 +5,8 @@ import { useLoaderData, useLocation, useNavigate } from 'react-router'
 import { AuthContext } from '../Provider/AuthProvider'
 import { Loading } from '../Component/Loading/Loading'
 import { Fade } from 'react-awesome-reveal'
+import { Roomaster } from '../Component/Extra-two-Section/Roommaster/Roomaster'
+import { TopRatedRoommate } from '../Component/Extra-two-Section/TopRatedRoommate/TopRatedRoommate'
 
 export const Home = () => {
     const { loading } = useContext(AuthContext);
@@ -38,6 +40,13 @@ export const Home = () => {
                         dataFormServer.map(data => <Card key={data._id} data={data}></Card>)
                     }
                 </div>
+            </div>
+
+            <div className='my-10'>
+                <Roomaster></Roomaster>
+            </div>
+            <div className='my-10'>
+                <TopRatedRoommate></TopRatedRoommate>
             </div>
         </div>
     )
