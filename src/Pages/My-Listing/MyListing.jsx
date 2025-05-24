@@ -3,15 +3,20 @@ import { AuthContext } from '../../Provider/AuthProvider'
 import { toast } from 'react-toastify';
 import { Loading } from '../../Component/Loading/Loading';
 import { MyListingRow } from './MyListingRow';
+import { useNavigate } from 'react-router-dom';
+
 
 export const MyListing = () => {
 
+    const navigate = useNavigate();
     const { user, loading } = useContext(AuthContext);
     const [myListings, setMyListing] = useState()
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        if (!user?.email) return;
+        if (!user?.email){
+            navigate("/auth/login")
+        } 
         // collecting data form the api via email
         fetch(`https://server-side-fawn.vercel.app/my-listing?email=${user.email}`)
             .then((res) => res.json())

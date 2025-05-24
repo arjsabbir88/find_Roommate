@@ -6,6 +6,7 @@ import { Loading } from '../Loading/Loading';
 import { Tooltip } from 'react-tooltip';
 import './style.css'
 import { ThemeToggle } from '../../Theme/Theme';
+import Swal from 'sweetalert2';
 
 
 export const NavBar = () => {
@@ -17,11 +18,18 @@ export const NavBar = () => {
         console.log('clicked');
         logOut()
             .then(() => {
-                toast.success('Account LogOUt Successfylly');
-                console.log('logout successfylly')
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    text: 'Create Your Account Successfully',
+                    title: "Welcome to RoomSync",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                // console.log('logout successfylly')
             }).catch((error) => {
                 toast.error('Something was worng try again letter');
-            })
+            }) 
     }
 
     const links = <>
