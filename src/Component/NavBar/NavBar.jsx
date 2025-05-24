@@ -3,6 +3,9 @@ import { Link } from 'react-router'
 import { AuthContext } from '../../Provider/AuthProvider'
 import { toast, ToastContainer } from 'react-toastify';
 import { Loading } from '../Loading/Loading';
+import { Tooltip } from 'react-tooltip';
+import './style.css'
+
 
 export const NavBar = () => {
 
@@ -24,16 +27,16 @@ export const NavBar = () => {
         <ToastContainer />
         <ul className='md:flex gap-5'>
             <li>
-                <Link to='/' className='btn'>Home</Link>
+                <Link to='/' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>Home</Link>
             </li>
             <li>
-                <Link to='/find-roommate' className='btn'>Add to Find Roommate</Link>
+                <Link to='/find-roommate' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>Add to Find Roommate</Link>
             </li>
             <li>
-                <Link to='/browse-listings' className='btn'>Browse Listing</Link>
+                <Link to='/browse-listings' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>Browse Listing</Link>
             </li>
             <li>
-                <Link to='/my-listing' className='btn'>My Listings</Link>
+                <Link to='/my-listing' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>My Listings</Link>
             </li>
         </ul>
     </>
@@ -44,7 +47,7 @@ export const NavBar = () => {
     }
 
     return (
-        <div className="navbar bg-base-100 shadow-sm mt-4">
+        <div className="sticky top-0  navbar bg-base-100 mt-4 shadow-2x/30 z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -69,18 +72,19 @@ export const NavBar = () => {
 
                 {
                     user ? (
-                        <div className="avatar avatar-online mx-3">
-                            <div className="w-10 rounded-full hover:cursor-pointer">
+                        <div className="avatar avatar-online mx-3 example-container">
+                            <div className="w-10 rounded-full hover:cursor-pointer" data-tooltip-id="my-tooltip-styles" data-tooltip-content={user.displayName}>
                                 <img src={`${user.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/128/1177/1177568.png"}`} title={user.displayName} />
                             </div>
+                            <Tooltip id="my-tooltip-styles" className="example" />
                         </div>
                     ) : ('')
                 }
                 {
-                    user ? (<Link to='/auth/login' className="btn hidden">LogIn</Link>) : (<Link to='/auth/login' className="btn">LogIn</Link>)
+                    user ? (<Link to='/auth/login' className="btn hidden bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogIn</Link>) : (<Link to='/auth/login' className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogIn</Link>)
                 }
                 {
-                    user ? (<button onClick={handleLogOut} className="btn">LogOut</button>) : (<Link to='/auth/register' className="btn">Regiester</Link>)
+                    user ? (<button onClick={handleLogOut} className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogOut</button>) : (<Link to='/auth/register' className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">Regiester</Link>)
                 }
             </div>
         </div>

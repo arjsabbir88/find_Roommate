@@ -17,6 +17,7 @@ export const Rows = ({ data }) => {
 
 
     return (
+
         <tr>
             <td>
                 <div className="flex items-center gap-3">
@@ -47,5 +48,6 @@ export const Rows = ({ data }) => {
                     See More</Link>
             </th>
         </tr>
+
     )
 }
