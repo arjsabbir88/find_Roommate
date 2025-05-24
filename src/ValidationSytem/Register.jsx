@@ -4,6 +4,8 @@ import { AuthContext } from '../Provider/AuthProvider'
 import { toast, ToastContainer } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { Loading } from '../Component/Loading/Loading';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const Register = () => {
 
@@ -37,7 +39,7 @@ export const Register = () => {
         const hasUppercase = /[A-Z]/.test(password);
         const hasLowercase = /[a-z]/.test(password);
 
-        if (password < 6) {
+        if (password.length < 6) {
             errors.push("Pass is too short");
         }
 
@@ -76,13 +78,16 @@ export const Register = () => {
                 });
                 navigate('/');
             }).catch(error => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                toast.error(error.message)
+
+                // Swal.fire({
+                //     position: "center",
+                //     icon: "success",
+                //     text: 'Create Your Account Successfully',
+                //     title: "Welcome to RoomSync",
+                //     showConfirmButton: false,
+                //     timer: 1500
+                // });
                 console.log('error form create user form')
             })
     }

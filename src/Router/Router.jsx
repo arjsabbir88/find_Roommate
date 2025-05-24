@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import { Root } from "../Root/Root";
 import { Error } from "../ErrorPage/Error";
 import { Home } from "../Pages/Home";
@@ -70,7 +70,11 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/*',
-                element: <Error></Error>
+                element: <Navigate to='/error' replace />
+            },
+            {
+                path: '/error',
+                Component: Error
             },
             {
                 path: '/my-listing/update-Listing-data/:id',

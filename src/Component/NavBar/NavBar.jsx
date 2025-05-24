@@ -26,7 +26,7 @@ export const NavBar = () => {
 
     const links = <>
         <ToastContainer />
-        <ul className='md:flex gap-5'>
+        <ul className='md:flex md:flex-col lg:flex-row gap-5'>
             <li>
                 <Link to='/' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>Home</Link>
             </li>
@@ -39,7 +39,7 @@ export const NavBar = () => {
             <li>
                 <Link to='/my-listing' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>My Listings</Link>
             </li>
-            <li>
+            <li className='lg:hidden'>
                 {
                     user ? (<Link to='/auth/login' className="btn hidden bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogIn</Link>) : (<Link to='/auth/login' className="btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white">LogIn</Link>)
                 }

@@ -1,23 +1,47 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NavBar } from '../Component/NavBar/NavBar'
-import { Outlet, useNavigation } from 'react-router'
+import { Outlet, useLocation, useNavigation } from 'react-router'
 import { Footer } from '../Component/Footer/Footer'
 import { AuthContext } from '../Provider/AuthProvider'
+import { Loading } from '../Component/Loading/Loading'
+import { ToastContainer } from 'react-toastify'
 
 export const Root = () => {
 
-    // const { user } = useContext(AuthContext);
+    const location = useLocation();
+    const [showFooter, setShowFooter] = useState(true);
+    const [showNavBar, setShowNavBar] = useState(true);
 
-    // const navigation = useNavigation();
+    const { state } = useNavigation();
 
-    // if (user)
+    useEffect(() => {
+        if (location.pathname === "/error") {
+            setShowFooter(false);
+            setShowNavBar(false);
+        } else {
+            setShowFooter(true);
+            setShowNavBar(true);
+        }
+    }, [location]);
 
     return (
         <>
             <div className='w-11/12 mx-auto'>
-                <NavBar></NavBar>
-                <Outlet></Outlet>
-                <Footer></Footer>
+
+                {
+                    showNavBar && <NavBar></NavBar>
+                }
+
+                {
+                    state === 'loading' ? <Loading /> : <Outlet />
+                }
+                <ToastContainer></ToastContainer>
+
+
+                {
+                    showFooter && <Footer></Footer>
+                }
+
             </div>
         </>
     )
