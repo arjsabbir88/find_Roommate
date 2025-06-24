@@ -51,3 +51,6 @@ Backend: Vercel Serverless Deployment
 🧑‍💻 Author
 Arj Sabbir
 🔗 [GitHub link here](https://github.com/arjsabbir88)
+
+
+<img src="https://i.ibb.co/Mx5ds3zq/roomsync-finding-roommate-web-app.png" alt="homePage"/>
