@@ -21,12 +21,20 @@ export const NavBar = () => {
                 Swal.fire({
                     position: "center",
                     icon: "success",
+<<<<<<< HEAD
                     text: 'Create Your Account Successfully',
                     title: "Welcome to RoomSync",
                     showConfirmButton: false,
                     timer: 1500
                 });
                 // console.log('logout successfylly')
+=======
+                    title: "LogOut Successfylly",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                console.log('logout successfylly')
+>>>>>>> 7823f13 (completed all the task)
             }).catch((error) => {
                 toast.error('Something was worng try again letter');
             }) 
@@ -39,13 +47,20 @@ export const NavBar = () => {
                 <Link to='/' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>Home</Link>
             </li>
             <li>
+                {
+                    user&& <Link to='/dashboard' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>Dashboard</Link>
+                }
+            </li>
+            <li>
                 <Link to='/find-roommate' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>Add to Find Roommate</Link>
             </li>
             <li>
                 <Link to='/browse-listings' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>Browse Listing</Link>
             </li>
             <li>
-                <Link to='/my-listing' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>My Listings</Link>
+                {
+                    user&& <Link to='/my-listing' className='btn bg-[#50E3C2] hover:bg-[#30C9A2] transition duration-300 ease-in-out hover:text-white'>My Listings</Link>
+                }
             </li>
             <li className='lg:hidden'>
                 {

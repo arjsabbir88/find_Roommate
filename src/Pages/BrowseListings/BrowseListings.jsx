@@ -2,9 +2,11 @@ import React from 'react'
 import { useLoaderData } from 'react-router'
 import { Rows } from './Rows';
 
-export const BrowseListings = () => {
+export const BrowseListings = ({listings: propListings}) => {
+    
+        const routeData = useLoaderData();
 
-    const allData = useLoaderData();
+    const allData = propListings || routeData || [];
     return (
         <>
             <div className="overflow-x-auto my-6">
