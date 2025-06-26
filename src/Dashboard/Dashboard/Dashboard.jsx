@@ -4,7 +4,7 @@ import NavBar from "../DashboardComponent/NavBar/NavBar";
 import StatsCharts from "../DashboardComponent/StartCharts/StartCharts";
 import { MyListing } from "../../Pages/My-Listing/MyListing";
 import DashboardCard from "../DashboardComponent/DashboardCard";
-
+import { FaUser, FaChartBar, FaMoneyBillWave, FaCreditCard } from "react-icons/fa";
 
 
 const Dashboard = () => {
