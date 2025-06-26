@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { BrowseListings } from "../../Pages/BrowseListings/BrowseListings";
-import CardContainer from "../DashboardComponent/CardContainer/Cardcontainer";
 import NavBar from "../DashboardComponent/NavBar/NavBar";
 import StatsCharts from "../DashboardComponent/StartCharts/StartCharts";
 import { MyListing } from "../../Pages/My-Listing/MyListing";
+import CardContainerComponent from "../CardContainerComponent/CardContainerComponent";
+
+
 
 const Dashboard = () => {
   const [listings, setListings] = useState([]);
@@ -20,7 +22,7 @@ const Dashboard = () => {
         <NavBar></NavBar>
       </div>
       <div>
-        <CardContainer></CardContainer>
+        <CardContainerComponent/>
       </div>
       <div className="my-8">
         <StatsCharts></StatsCharts>

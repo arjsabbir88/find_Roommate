@@ -2,7 +2,7 @@ import React from 'react'
 import { FaUser, FaChartBar, FaMoneyBillWave, FaCreditCard } from "react-icons/fa";
 import DashboardCard from '../DashboardCard'
 
-const CardContainer = () => {
+const CardContainerComponent = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <DashboardCard
@@ -41,4 +41,4 @@ const CardContainer = () => {
   )
 }
 
-export default CardContainer
+export default CardContainerComponent
