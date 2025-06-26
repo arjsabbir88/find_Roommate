@@ -7,7 +7,6 @@ const NavBar = () => {
 
 
     const {user} = useContext(AuthContext)
-    console.log(user)
 
   return (
     <div className=" px-6 py-4 flex justify-between items-center">

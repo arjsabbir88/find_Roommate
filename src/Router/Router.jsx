@@ -61,7 +61,9 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/my-listing",
-        Component: MyListing,
+        element: <ProtectedRoute>
+            <MyListing></MyListing>
+        </ProtectedRoute>
         // loader:
       },
       {
